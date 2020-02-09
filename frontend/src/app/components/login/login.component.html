@@ -1,0 +1,61 @@
+<!--<mat-card>-->
+<!--  <mat-card-title>Iniciar sesión</mat-card-title>-->
+<!--  <mat-card-content>-->
+<!--    <form [formGroup]="loginForm" (ngSubmit)="login()">-->
+<!--      <p>-->
+<!--        <mat-form-field>-->
+<!--          <input type="text" matInput placeholder="Correo electrónico" formControlName="email">-->
+<!--        </mat-form-field>-->
+<!--      </p>-->
+
+<!--      <p>-->
+<!--        <mat-form-field>-->
+<!--          <input type="password" matInput placeholder="Contraseña" formControlName="password">-->
+<!--        </mat-form-field>-->
+<!--      </p>-->
+
+<!--      <p *ngIf="error" class="error">-->
+<!--        {{ error.message }}-->
+<!--      </p>-->
+
+<!--      <div class="button">-->
+<!--        <button type="submit" mat-flat-button color="primary">Acceder</button>-->
+<!--      </div>-->
+
+<!--    </form>-->
+<!--  </mat-card-content>-->
+<!--</mat-card>-->
+
+<mz-card [hoverable]="false">
+  <mz-card-title>
+    Iniciar sesión
+  </mz-card-title>
+  <mz-card-content>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <p>
+        <mz-input-container>
+          <label for="email-input"></label>
+          <input mz-input
+                 [label]="'Correo electrónico'"
+                 id="email-input"
+                 type="email"
+                 formControlName="email">
+        </mz-input-container>
+      </p>
+      <p>
+        <mz-input-container>
+          <label for="password-input"></label>
+          <input mz-input
+                 [label]="'Contraseña'"
+                 id="password-input"
+                 type="password"
+                 formControlName="password">
+        </mz-input-container>
+      </p>
+      <button mz-button id="loginButton" type="submit">Entrar</button>
+    </form>
+      <p *ngIf="error" class="error">
+        {{ error.message }}
+      </p>
+        </mz-card-content>
+      </mz-card>

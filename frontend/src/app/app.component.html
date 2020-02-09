@@ -1,0 +1,6 @@
+<div *ngIf="this.storageService.isAuthenticated()">
+  <app-navigation></app-navigation>
+</div>
+<div *ngIf="!this.storageService.isAuthenticated()">
+  <app-login></app-login>
+</div>

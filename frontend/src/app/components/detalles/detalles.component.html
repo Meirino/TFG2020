@@ -1,0 +1,81 @@
+<mz-card *ngIf="!this.editable" horizontal="true" class="profile-card">
+  <mz-card-image>
+    <img class="user-avatar"
+         src="https://66.media.tumblr.com/fd2fcbdd28e98371ffc576469ea8a060/tumblr_p58o1rtzlr1w4tg2ao2_250.jpg"
+         alt="user avatar"/>
+  </mz-card-image>
+  <mz-card-content>
+    <label>Nombre de usuario: </label>
+    <p class="username-profile">{{this.user.username}}</p>
+    <label>Correo electrónico: </label>
+    <p class="email-profile">{{this.user.email}}</p>
+  </mz-card-content>
+  <mz-card-action>
+    <button class="btn" (click)="edit()">Editar</button>
+  </mz-card-action>
+</mz-card>
+
+<mz-card *ngIf="this.editable" horizontal="true" class="profile-card">
+  <mz-card-image>
+    <img class="user-avatar"
+         src="https://66.media.tumblr.com/fd2fcbdd28e98371ffc576469ea8a060/tumblr_p58o1rtzlr1w4tg2ao2_250.jpg"
+         alt="user avatar"/>
+  </mz-card-image>
+  <mz-card-content>
+    <form>
+      <label>
+        Nombre de usuario:</label>
+      <input name="username" type="text" value="{{this.user.username}}">
+      <label>Correo electrónico: </label>
+      <input name="email" type="text" value="{{this.user.email}}">
+      <label>Foto de perfil:</label>
+      <input name="avatar" type="file">
+      <div class="divider"></div>
+      <label>Contraseña:</label>
+      <input type="password">
+      <label>Contraseña (Repite):</label>
+      <input type="password">
+    </form>
+    <div class="divider"></div>
+  </mz-card-content>
+  <mz-card-action>
+    <button class="btn" (click)="saveChanges()">Guardar</button>
+  </mz-card-action>
+</mz-card>
+
+<h5>Lecciones</h5>
+<div class="divider"></div>
+<ul>
+  <li>1. </li>
+  <li>2. </li>
+  <li>3. </li>
+  <li>4. </li>
+  <li>5. </li>
+</ul>
+<!--
+TODO: Add SQL query
+-->
+
+<h5>Ejercicios</h5>
+<div class="divider"></div>
+<ul>
+  <li>1. </li>
+  <li>2. </li>
+  <li>3. </li>
+  <li>4. </li>
+  <li>5. </li>
+</ul>
+<!--
+TODO: Add SQL query
+-->
+
+<!--<mat-card class="password-card">-->
+<!--  <mat-card-header>-->
+<!--    <img class="user-avatar" src="https://66.media.tumblr.com/fd2fcbdd28e98371ffc576469ea8a060/tumblr_p58o1rtzlr1w4tg2ao2_250.jpg"  alt="user avatar"/>-->
+<!--  </mat-card-header>-->
+<!--  <mat-card-content>-->
+<!--    <h1 class="username-profile">{{this.user.username}}</h1>-->
+<!--    <h2 class="email-profile">{{this.user.email}}</h2>-->
+<!--  </mat-card-content>-->
+<!--</mat-card>-->
+

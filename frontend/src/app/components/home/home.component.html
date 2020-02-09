@@ -1,0 +1,9 @@
+<mat-toolbar color="primary">
+  <span>Trabajo de Fin de Grado</span>
+  <span class="example-spacer"></span>
+  <button mat-raised-button color="accent" [matMenuTriggerFor]="menu">{{user.username}}</button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>Perfil</button>
+    <button mat-menu-item (click)="logout()">Cerrar sesión</button>
+  </mat-menu>
+</mat-toolbar>

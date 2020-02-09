@@ -1,0 +1,22 @@
+<div class="navbar-fixed">
+  <mz-navbar id="AIbar">
+    <a class="brand-logo"><img class="circle responsive-img" src="/avatars/bot.jpg" style="height:60px;padding:5px;">
+      {{this.storageService.getBot.username}}</a>
+  </mz-navbar>
+</div>
+<div id="text-chat" class="chat_body">
+  <div id="message_row" class="messages">
+    <div class="row" *ngFor="let texto of mensajes; let last = last">
+      <app-message [mensaje]="texto"></app-message>
+    </div>
+  </div>
+  <div id="anchor"></div>
+</div>
+<div class="row">
+  <div id="textbox" class="col m12 s12 x12">
+    <input (keyup.enter)="talk()" class="form-control" [(ngModel)]="mensaje" name="chat" type="text"
+           placeholder="Hola, ¿Qué tal?">
+  </div>
+  <div class="col m1 s1 x0">
+  </div>
+</div>

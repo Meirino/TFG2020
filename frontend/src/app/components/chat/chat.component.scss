@@ -1,0 +1,15 @@
+input {
+  position: fixed;
+  bottom: 0px;
+  padding: 15px;
+}
+
+#text-chat {
+  overflow-anchor: none;
+  padding: 2%;
+}
+
+#anchor {
+  overflow-anchor: auto;
+  height: 1px;
+}

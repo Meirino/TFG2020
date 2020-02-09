@@ -1,0 +1,32 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <div id="user-info">
+      <img class="user-avatar" src="https://66.media.tumblr.com/fd2fcbdd28e98371ffc576469ea8a060/tumblr_p58o1rtzlr1w4tg2ao2_250.jpg" alt="Avatar">
+      <p>{{this.user.username}}</p>
+    </div>
+    <hr>
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="[{outlets: { internal: ['chat']}}]">Chat</a>
+      <a mat-list-item>Ejercicios</a>
+      <a mat-list-item [routerLink]="[{outlets: { internal: ['profile']}}]">Perfil</a>
+      <a mat-list-item (click)="logout()">Cerrar sesión</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>Chatbot App</span>
+    </mat-toolbar>
+    <router-outlet name="internal"></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
