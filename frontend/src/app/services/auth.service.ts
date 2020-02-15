@@ -2,10 +2,10 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {Observable, Subject, throwError} from 'rxjs';
-import {LoginObject} from '../../../../frontend/src/app/models/login';
 import {Session} from '../core/models/session.model';
-import {User} from '../../../../frontend/src/app/models/user';
 import {catchError, map} from 'rxjs/operators';
+import {User} from '../core/models/user.model';
+import {LoginObject} from '../core/models/loginObject';
 
 // tslint:disable-next-line:class-name
 export interface loginRes {
@@ -21,7 +21,7 @@ export interface loginRes {
 
 @Injectable()
 export class AuthenticationService {
-  public baseURL = 'http://localhost:8000/api/v1/';
+  public baseURL = 'http://localhost:8081/api/v1/users/';
   private logInErrorSubject = new Subject<string>();
 
   constructor(public http: HttpClient, public router: Router) {

@@ -1,61 +1,135 @@
-<!--<mat-card>-->
-<!--  <mat-card-title>Iniciar sesión</mat-card-title>-->
-<!--  <mat-card-content>-->
+<!--<mz-card [hoverable]="true">-->
+<!--  <mz-card-title>-->
+<!--    Iniciar sesión-->
+<!--  </mz-card-title>-->
+<!--  <mz-card-content>-->
 <!--    <form [formGroup]="loginForm" (ngSubmit)="login()">-->
 <!--      <p>-->
-<!--        <mat-form-field>-->
-<!--          <input type="text" matInput placeholder="Correo electrónico" formControlName="email">-->
-<!--        </mat-form-field>-->
+<!--        <mz-input-container>-->
+<!--          <label for="email-input"></label>-->
+<!--          <input mz-input-->
+<!--                 [label]="'Correo electrónico'"-->
+<!--                 id="email-input"-->
+<!--                 type="email"-->
+<!--                 formControlName="email">-->
+<!--        </mz-input-container>-->
 <!--      </p>-->
-
 <!--      <p>-->
-<!--        <mat-form-field>-->
-<!--          <input type="password" matInput placeholder="Contraseña" formControlName="password">-->
-<!--        </mat-form-field>-->
+<!--        <mz-input-container>-->
+<!--          <label for="password-input"></label>-->
+<!--          <input mz-input-->
+<!--                 [label]="'Contraseña'"-->
+<!--                 id="password-input"-->
+<!--                 type="password"-->
+<!--                 formControlName="password">-->
+<!--        </mz-input-container>-->
 <!--      </p>-->
-
-<!--      <p *ngIf="error" class="error">-->
-<!--        {{ error.message }}-->
-<!--      </p>-->
-
-<!--      <div class="button">-->
-<!--        <button type="submit" mat-flat-button color="primary">Acceder</button>-->
-<!--      </div>-->
-
+<!--      <button mz-button id="loginButton" type="submit">Entrar</button>-->
 <!--    </form>-->
-<!--  </mat-card-content>-->
-<!--</mat-card>-->
+<!--    <p *ngIf="error" class="error">-->
+<!--      {{ error.message }}-->
+<!--    </p>-->
+<!--  </mz-card-content>-->
+<!--</mz-card>-->
 
-<mz-card [hoverable]="false">
-  <mz-card-title>
-    Iniciar sesión
-  </mz-card-title>
-  <mz-card-content>
-    <form [formGroup]="loginForm" (ngSubmit)="login()">
-      <p>
-        <mz-input-container>
-          <label for="email-input"></label>
-          <input mz-input
-                 [label]="'Correo electrónico'"
-                 id="email-input"
-                 type="email"
-                 formControlName="email">
-        </mz-input-container>
-      </p>
-      <p>
-        <mz-input-container>
-          <label for="password-input"></label>
-          <input mz-input
-                 [label]="'Contraseña'"
-                 id="password-input"
-                 type="password"
-                 formControlName="password">
-        </mz-input-container>
-      </p>
-      <button mz-button id="loginButton" type="submit">Entrar</button>
+<div class="container white z-depth-2">
+  <ul class="tabs teal">
+    <li class="tab col s3"><a class="white-text active" href="#login">Iniciar sesión</a></li>
+    <li class="tab col s3"><a class="white-text" href="#register">Registro</a></li>
+  </ul>
+  <div id="login" class="col s12">
+    <form class="col s12" [formGroup]="loginForm" (ngSubmit)="login()">
+      <div class="form-container">
+        <h3 class="teal-text">¡Hola!</h3>
+        <div class="row">
+          <div class="input-field col s12">
+            <input mz-input
+                   [label]="'Correo electrónico'"
+                   id="email"
+                   type="email"
+                   formControlName="email">
+            <label for="email"></label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input mz-input
+                   [label]="'Contraseña'"
+                   id="password-input"
+                   type="password"
+                   formControlName="password">
+            <label for="password-input"></label>
+          </div>
+        </div>
+        <br>
+        <div>
+          <button mz-button id="loginButton" type="submit">Entrar</button>
+          <br>
+          <br>
+          <p *ngIf="error" class="error">
+            {{ error.message }}
+          </p>
+        </div>
+      </div>
     </form>
-      <p *ngIf="error" class="error">
-        {{ error.message }}
-      </p>
-        </mz-card-content>
-      </mz-card>
+  </div>
+  <div id="register" class="col s12">
+    <form class="col s12" [formGroup]="registerForm" (ngSubmit)="register()">
+      <div class="form-container">
+        <h3 class="teal-text">¡Bienvenido!</h3>
+        <div class="row">
+          <div class="input-field col s12">
+            <input mz-input
+                   [label]="'Nombre de usuario'"
+                   [class.is-invalid]="registerForm.get('username').invalid && registerForm.get('username').touched"
+                   id="username"
+                   type="text"
+                   formControlName="username">
+            <label for="username"></label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input mz-input
+                   [validate]="true"
+                   [dataError]="'ejemplo@dominio.es'"
+                   [label]="'Correo electrónico'"
+                   id="email_reg"
+                   type="email"
+                   formControlName="email">
+            <label for="email_reg"></label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input mz-input
+                   [label]="'Contraseña'"
+                   id="password_reg"
+                   type="password"
+                   formControlName="password">
+            <label for="password_reg"></label>
+          </div>
+        </div>
+<!--        <div class="row">-->
+<!--          <div class="input-field col s12">-->
+<!--            <input id="password-confirm" type="password" class="validate">-->
+<!--            <label for="password-confirm">Confirmar contraseña</label>-->
+<!--          </div>-->
+<!--        </div>-->
+        <div>
+          <button class="btn waves-effect waves-light teal" type="submit" name="action">Registrarse</button>
+          <br>
+          <br>
+          <p *ngIf="error" class="error">
+            {{ error.message }}
+          </p>
+          <div *ngIf="(this.registerForm.invalid && registerForm.touched) || registerForm.dirty">
+            <small *ngIf="registerForm.errors?.required" class="text-danger">Todos los campos son obligatorios.</small>
+            <!--question mark(?) is a safe navigation operator-->
+            <small *ngIf="registerForm.errors?.pattern" class="text-danger">El correo electrónico debe ser válido</small>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

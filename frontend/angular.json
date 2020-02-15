@@ -97,7 +97,7 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "./node_modules/materialize-css/dist/css/materialize.min.css",
               "src/styles.scss"
             ],
             "scripts": []

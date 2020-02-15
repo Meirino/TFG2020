@@ -1,10 +1,5 @@
 package com.meirino.TFG.entities;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -42,6 +37,7 @@ public class User {
     private boolean mfa_activated;
 
     public User(String email, String password, String username, String avatar_url) {
+
         this.email = email;
         this.password = password;
         this.username = username;

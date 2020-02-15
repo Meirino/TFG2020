@@ -6,7 +6,7 @@ public class RegistrationFields {
     private String email;
     private String password;
 
-    public RegistrationFields(String username, String email, String password, boolean mfa) {
+    public RegistrationFields(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;

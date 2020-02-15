@@ -34,7 +34,7 @@ import {
   MzHalfwayFabModule,
   MzIconMdiModule,
   MzIconModule,
-  MzInputModule, MzNavbarModule
+  MzInputModule, MzNavbarModule, MzTabModule
 } from 'ngx-materialize';
 
 import { ChatComponent } from './components/chat/chat.component';
@@ -81,7 +81,8 @@ import { MessageComponent } from './components/message/message.component';
     MzInputModule,
     MzIconMdiModule,
     MzNavbarModule,
-    HttpClientModule
+    HttpClientModule,
+    MzTabModule
   ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent]

@@ -35,7 +35,11 @@ public class RestUserController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity<User> register(@RequestBody RegistrationFields registerForm) {
-        this.userService.register(new User(registerForm.getEmail(), registerForm.getPassword(), registerForm.getUsername(), ""));
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        try {
+            this.userService.register(new User(registerForm.getEmail(), registerForm.getPassword(), registerForm.getUsername(), ""));
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
