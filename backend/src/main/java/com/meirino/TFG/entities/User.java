@@ -1,5 +1,7 @@
 package com.meirino.TFG.entities;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -10,18 +12,24 @@ import java.time.LocalDateTime;
 
 
 public class User {
+
+    public interface userLogin {};
+
     @Id
     @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonView(userLogin.class)
     private Long id;
 
     @Column(nullable = false)
+    @JsonView(userLogin.class)
     private String email;
 
     @Column(nullable = false)
     private String password;
 
     @Column
+    @JsonView(userLogin.class)
     private String username;
 
     @Column
@@ -31,6 +39,7 @@ public class User {
     private LocalDateTime updated;
 
     @Column
+    @JsonView(userLogin.class)
     private String avatar_url;
 
     @Column(nullable = false)
@@ -46,6 +55,8 @@ public class User {
         this.created = LocalDateTime.now();
         this.updated = LocalDateTime.now();
     }
+
+    public User() {}
 
     public Long getId() {
         return id;
