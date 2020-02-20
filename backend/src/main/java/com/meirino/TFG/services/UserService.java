@@ -3,6 +3,7 @@ package com.meirino.TFG.services;
 import com.meirino.TFG.entities.User;
 import com.meirino.TFG.repositories.UserRepository;
 import com.meirino.TFG.utils.LoginResponse;
+import com.meirino.TFG.utils.StringRedisRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -16,13 +17,16 @@ public class UserService {
 
 //    private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
+    private StringRedisRepository redisRepository;
 
     @Autowired
     public UserService(
 //            PasswordEncoder passwordEncoder,
+            StringRedisRepository redisRepository,
             UserRepository userRepository
     ) {
 //        this.passwordEncoder = passwordEncoder;
+        this.redisRepository = redisRepository;
         this.userRepository = userRepository;
     }
     @PostConstruct
@@ -53,12 +57,15 @@ public class UserService {
             // Comparar contraseñas
             if(user.getPassword().equals(pass)) {
                 // Añadir a Redis
+                this.redisRepository.add(uuid, user.toString());
                 return new LoginResponse(uuid, user);
             } else {
                 throw new IllegalAccessException();
             }
         } catch (NullPointerException e) {
             throw  e;
+        } catch (Exception e) {
+            throw e;
         }
     }
 }

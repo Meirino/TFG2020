@@ -121,4 +121,18 @@ public class User {
     public void setMfa_activated(boolean mfa_activated) {
         this.mfa_activated = mfa_activated;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", username='" + username + '\'' +
+                ", created=" + created +
+                ", updated=" + updated +
+                ", avatar_url='" + avatar_url + '\'' +
+                ", mfa_activated=" + mfa_activated +
+                '}';
+    }
 }
