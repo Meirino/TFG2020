@@ -9,13 +9,12 @@ import {LoginObject} from '../core/models/loginObject';
 
 // tslint:disable-next-line:class-name
 export interface loginRes {
-  success: boolean;
-  message: string;
   token: string;
-  userdata: {
+  user: {
     id: number;
-    user_name: string;
+    username: string;
     email: string;
+    avatar_url: string;
   };
 }
 
@@ -35,7 +34,7 @@ export class AuthenticationService {
     return this.http.post<loginRes>(this.baseURL + 'login', loginObj).pipe(
       map(res => {
         console.log(res);
-        return new Session(res.token, new User(res.userdata.user_name, res.userdata.email, res.userdata.id));
+        return new Session(res.token, new User(res.user.username, res.user.email, res.user.avatar_url, res.user.id));
       }),
       catchError(this.handleError)
     );

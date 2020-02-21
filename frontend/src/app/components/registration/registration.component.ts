@@ -32,7 +32,7 @@ export class RegistrationComponent implements OnInit {
     this.secondFormGroup = this.formBuilder.group({
       secondCtrl: ['', Validators.required]
     });
-    this.user = {id: '', username: '', email: '', password: ''};
+    this.user = {id: NaN, username: '', email: '', password: '', avatarUrl: ''};
   }
 
   public checkPassword(): boolean {

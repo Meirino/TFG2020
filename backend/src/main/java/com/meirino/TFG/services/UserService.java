@@ -62,10 +62,8 @@ public class UserService {
             } else {
                 throw new IllegalAccessException();
             }
-        } catch (NullPointerException e) {
-            throw  e;
         } catch (Exception e) {
-            throw e;
+            throw  e;
         }
     }
 }

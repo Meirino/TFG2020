@@ -39,11 +39,10 @@ export class LoginComponent implements OnInit {
     this.submitted = true;
     this.error = null;
 
-    console.log(this.loginForm.value);
-    console.log(this.loginForm.valid);
     if (this.loginForm.valid) {
       this.authenticationService.login(new LoginObject(this.loginForm.value)).subscribe(
         data => {
+          console.log(data);
           this.storageService.setCurrentSession(data);
           this.router.navigate(['/home']);
         },
@@ -65,7 +64,7 @@ export class LoginComponent implements OnInit {
     console.log(this.registerForm.valid);
     if (this.registerForm.valid && this.validate()) {
       this.authenticationService.register({ username: this.registerForm.get('username').value,
-        password: this.registerForm.get('password').value, email: this.registerForm.get('email').value, id: ''}).subscribe(
+        password: this.registerForm.get('password').value, email: this.registerForm.get('email').value, avatarUrl: '', id: 0}).subscribe(
         data => {
           this.error = {code: 0, message: 'Registro existoso'};
         },

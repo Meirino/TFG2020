@@ -44,7 +44,7 @@ export class DialogflowService {
       .put('http://18.212.103.97:4000/api/lecciones', {
         leccion: id,
         // tslint:disable-next-line:radix
-        usuario: parseInt(this.storageService.getCurrentUser().id)
+        usuario: this.storageService.getCurrentUser().id
       })
       .subscribe(result => {
         console.log(result);
