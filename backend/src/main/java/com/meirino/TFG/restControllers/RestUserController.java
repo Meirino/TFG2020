@@ -6,6 +6,7 @@ import com.meirino.TFG.services.UserService;
 import com.meirino.TFG.utils.LoginFields;
 import com.meirino.TFG.utils.LoginResponse;
 import com.meirino.TFG.utils.RegistrationFields;
+import com.meirino.TFG.utils.UserEditForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -60,6 +61,43 @@ public class RestUserController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } catch (IllegalAccessException e) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @RequestMapping(value = "/editUser", method = RequestMethod.PUT)
+    @JsonView(userView.class)
+    // TODO: File upload
+    public ResponseEntity<Boolean> editUser(@RequestBody UserEditForm editForm) {
+        try {
+            if (this.userService.tokenExists(editForm.getToken())) {
+                boolean result = this.userService.editUser(editForm.getEmail(), editForm.getUsername());
+                if(result) {
+                    return new ResponseEntity<>(true, HttpStatus.OK);
+                } else {
+                    return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
+                }
+            } else {
+                return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
+            }
+        } catch (NullPointerException | IllegalAccessException e) {
+            return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            return new ResponseEntity<>(false, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @RequestMapping(value = "/editPass", method = RequestMethod.PUT)
+    @JsonView(userView.class)
+    // TODO: Cambiar contraseña
+    public ResponseEntity<Boolean> editPass(@RequestBody LoginFields loginForm) {
+        try {
+            String uuid = UUID.randomUUID().toString();
+            LoginResponse lr = this.userService.login(uuid, loginForm.getEmail(), loginForm.getPassword());
+            return new ResponseEntity<>(true, HttpStatus.OK);
+        } catch (NullPointerException | IllegalAccessException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

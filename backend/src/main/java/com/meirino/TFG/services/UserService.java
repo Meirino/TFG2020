@@ -66,4 +66,24 @@ public class UserService {
             throw  e;
         }
     }
+
+    public boolean tokenExists(String uuid) throws NullPointerException, IllegalAccessException {
+        try {
+            return this.redisRepository.getBy(uuid) != null;
+        } catch (NullPointerException npe) {
+            throw npe;
+        }
+    }
+
+    public boolean editUser(String email, String username) throws NullPointerException {
+        try {
+            User user = this.userRepository.findByEmail(email);
+            user.setEmail(email);
+            user.setUsername(username);
+            this.userRepository.save(user);
+            return true;
+        } catch (NullPointerException npe) {
+            return false;
+        }
+    }
 }
