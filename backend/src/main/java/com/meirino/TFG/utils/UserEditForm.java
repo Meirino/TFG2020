@@ -4,6 +4,7 @@ import java.io.File;
 
 public class UserEditForm {
     private String token;
+    private int id;
     private String email;
     private String username;
     //private File avatar;
@@ -15,6 +16,14 @@ public class UserEditForm {
     }
 
     public UserEditForm() {}
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getToken() {
         return token;

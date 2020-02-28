@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import javax.validation.constraints.Null;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -75,13 +76,34 @@ public class UserService {
         }
     }
 
-    public boolean editUser(String email, String username) throws NullPointerException {
+    public boolean editUser(int id, String email, String username) throws NullPointerException {
         try {
-            User user = this.userRepository.findByEmail(email);
-            user.setEmail(email);
-            user.setUsername(username);
-            this.userRepository.save(user);
-            return true;
+            Optional<User> user = this.userRepository.findById((long) id);
+            if (user.isPresent()) {
+                User usuario = user.get();
+                usuario.setEmail(email);
+                usuario.setUsername(username);
+                this.userRepository.save(usuario);
+                return true;
+            } else {
+                return false;
+            }
+        } catch (NullPointerException npe) {
+            return false;
+        }
+    }
+
+    public boolean editPass(int id, String password) {
+        try {
+            Optional<User> user = this.userRepository.findById((long) id);
+            if (user.isPresent()) {
+                User usuario = user.get();
+                usuario.setPassword(password);
+                this.userRepository.save(usuario);
+                return true;
+            } else {
+                return false;
+            }
         } catch (NullPointerException npe) {
             return false;
         }
